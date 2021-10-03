@@ -3,14 +3,22 @@ import {ThreeCanvas, useVideoTexture} from '@remotion/three';
 import React, {useEffect, useRef, useState} from 'react';
 import {AbsoluteFill, useVideoConfig, Video} from 'remotion';
 import {Phone} from './Phone';
+import {
+	EffectComposer,
+	DepthOfField,
+	Bloom,
+	Noise,
+	Vignette,
+	HueSaturation
+} from '@react-three/postprocessing';
 
 const container: React.CSSProperties = {
-	backgroundColor: 'white',
+	backgroundColor: 'white'
 };
 
 const videoStyle: React.CSSProperties = {
 	position: 'absolute',
-	opacity: 0,
+	opacity: 0
 };
 
 export const Scene: React.FC<{
@@ -32,7 +40,15 @@ export const Scene: React.FC<{
 		<AbsoluteFill style={container}>
 			<Video ref={videoRef} src={videoSrc} style={videoStyle} />
 			{videoData ? (
-				<ThreeCanvas width={width} height={height}>
+				<ThreeCanvas
+					width={width} height={height}
+					gl={{
+											 alpha: false,
+											 antialias: false,
+											 stencil: false,
+											 depth: false
+					}}
+				>
 					<ambientLight intensity={1.5} color={0xffffff} />
 					<pointLight position={[10, 10, 0]} />
 					<Phone
@@ -40,6 +56,23 @@ export const Scene: React.FC<{
 						videoTexture={texture}
 						aspectRatio={videoData.aspectRatio}
 					/>
+					<EffectComposer disableNormalPass>
+						<HueSaturation saturation={0.2} />
+						{/*						<DepthOfField
+							focusDistance={0}
+							focalLength={0.01}
+							bokehScale={2}
+							height={1000}
+						/> */}
+						<Bloom
+							luminanceThreshold={0}
+							luminanceSmoothing={1.3}
+							height={300}
+							opacity={1}
+						/>
+						<Noise opacity={0.025} />
+						<Vignette eskil={false} offset={0.1} darkness={1.1} />
+					</EffectComposer>
 				</ThreeCanvas>
 			) : null}
 		</AbsoluteFill>
