@@ -31,8 +31,8 @@ export const RemotionVideo: React.FC = () => {
 				component={Scene}
 				durationInFrames={300}
 				fps={30}
-				width={1280}
-				height={720}
+				width={2000}
+				height={2000}
 				defaultProps={{
 					videoSrc: deviceType === 'phone' ? phone : tablet,
 					baseScale: deviceType === 'phone' ? 1 : 1.8,
