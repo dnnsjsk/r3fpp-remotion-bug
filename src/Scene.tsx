@@ -27,7 +27,7 @@ export const Scene: React.FC<{
 	}, [videoSrc]);
 	return (
 		<>
-			{/*<Video ref={videoRef} src={videoSrc} style={videoStyle} />*/}
+			<Video ref={videoRef} src={videoSrc} style={videoStyle} />
 			{videoData ? (
 				<ThreeCanvas
 					width={width} height={height}
