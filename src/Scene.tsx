@@ -58,12 +58,12 @@ export const Scene: React.FC<{
 					/>
 					<EffectComposer disableNormalPass>
 						<HueSaturation saturation={0.2} />
-						{/*						<DepthOfField
-							focusDistance={0}
-							focalLength={0.01}
-							bokehScale={2}
+						<DepthOfField
+							focusDistance={10}
+							focalLength={0}
+							bokehScale={20}
 							height={1000}
-						/> */}
+						/>
 						<Bloom
 							luminanceThreshold={0}
 							luminanceSmoothing={1.3}
