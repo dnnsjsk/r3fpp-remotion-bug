@@ -16,33 +16,19 @@ const videoStyle: React.CSSProperties = {
 export const Scene: React.FC<{
 	videoSrc: string;
 }> = ({videoSrc}) => {
-	const videoRef = useRef<HTMLVideoElement>(null);
-	const {width, height} = useVideoConfig();
-	const [videoData, setVideoData] = useState<VideoMetadata | null>(null);
-
-	useEffect(() => {
-		getVideoMetadata(videoSrc)
-			.then((data) => setVideoData(data))
-			.catch((err) => console.log(err));
-	}, [videoSrc]);
 	return (
-		<>
-			{/*<Video ref={videoRef} src={videoSrc} style={videoStyle} />*/}
-			{videoData ? (
-				<ThreeCanvas
-					width={width} height={height}
-					gl={{
+		<ThreeCanvas
+			width={2000} height={2000}
+			gl={{
 						alpha: false,
 						antialias: false,
 						stencil: false,
 						depth: false
-					}}
-				>
-					<ambientLight intensity={1.5} color={0xffffff} />
-					<pointLight position={[10, 10, 0]} />
-					<Phone />
-				</ThreeCanvas>
-			) : null}
-		</>
+			}}
+		>
+			<ambientLight intensity={1.5} color={0xffffff} />
+			<pointLight position={[10, 10, 0]} />
+			<Phone />
+		</ThreeCanvas>
 	);
 };

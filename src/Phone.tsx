@@ -27,7 +27,7 @@ export const Phone = () => {
 				blur={2.5}
 				far={1.6}
 			/>
-			<Environment preset="sunset" />
+			{/* <Environment preset="sunset" /> */}
 		</>
 	);
 };
