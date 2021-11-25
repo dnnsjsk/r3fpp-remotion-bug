@@ -1,4 +1,8 @@
-import {ContactShadows, Environment, MeshDistortMaterial} from '@react-three/drei';
+import {
+	ContactShadows,
+	Environment,
+	MeshDistortMaterial,
+} from '@react-three/drei';
 
 export const Phone = () => {
 	return (
@@ -27,7 +31,7 @@ export const Phone = () => {
 				blur={2.5}
 				far={1.6}
 			/>
-			{/* <Environment preset="sunset" /> */}
+			<Environment preset="sunset" />
 		</>
 	);
 };
